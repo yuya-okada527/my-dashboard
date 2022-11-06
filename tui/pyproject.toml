@@ -1,10 +1,8 @@
 [tool.poetry]
-name = "my-dashboard"
+name = "src"
 version = "0.1.0"
 description = ""
 authors = ["yuya-okada527 <yuya.okada527@gmail.com>"]
-readme = "README.md"
-packages = [{include = "my_dashboard"}]
 
 [tool.poetry.dependencies]
 python = "3.10.6"
