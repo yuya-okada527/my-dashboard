@@ -1,11 +1,14 @@
 import dataclasses
 
 from textual.app import App, ComposeResult, RenderResult
-from textual.widget import Widget
+from textual.widgets import Static
 
 
 COMMANDS = [
-    ("CMD-D", "Split Pane Right")
+    ("CMD-D", "タブを分割"),
+    ("CMD-W", "タブを閉じる"),
+    ("CMD-R", "コマンドを検索"),
+    ("CMD-P", "コマンドパレットを表示")
 ]
 
 
@@ -15,7 +18,7 @@ class Command:
     description: str
 
 
-class CommandWidget(Widget):
+class CommandWidget(Static):
 
     def __init__(self, name: str, description: str) -> None:
         super().__init__()
@@ -28,6 +31,7 @@ class CommandWidget(Widget):
 class Dashboard(App):
 
     def compose(self) -> ComposeResult:
+        yield Static("Warp Cheat Sheet")
         for name, description in COMMANDS:
             yield CommandWidget(name=name, description=description)
 
