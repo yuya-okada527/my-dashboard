@@ -4,6 +4,11 @@ from textual.app import App, ComposeResult, RenderResult
 from textual.widget import Widget
 
 
+COMMANDS = [
+    ("CMD-D", "Split Pane Right")
+]
+
+
 @dataclasses.dataclass
 class Command:
     name: str
@@ -23,7 +28,8 @@ class CommandWidget(Widget):
 class Dashboard(App):
 
     def compose(self) -> ComposeResult:
-        yield CommandWidget(name="CMD-D", description="Split Pane Right")
+        for name, description in COMMANDS:
+            yield CommandWidget(name=name, description=description)
 
 
 if __name__ == "__main__":
