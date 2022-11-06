@@ -8,6 +8,7 @@ packages = [{include = "my_dashboard"}]
 
 [tool.poetry.dependencies]
 python = "3.10.6"
+textual = {extras = ["dev"], version = "^0.3.0"}
 
 
 [build-system]
