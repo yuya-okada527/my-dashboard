@@ -20,3 +20,14 @@ flowchart LR
   B --> C["データロード"]
   C --> D["画面表示"]
 ```
+
+### 設定ファイル形式例
+
+```yml
+screens:
+  - name: Warp Short Cut
+    view-type: table
+    data-source:
+      type: file
+      path: ./data/warp-short-cut.csv
+```
