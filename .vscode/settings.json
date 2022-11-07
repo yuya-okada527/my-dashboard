@@ -2,5 +2,8 @@
   "editor.tabSize": 2,
   "[python]": {
     "editor.tabSize": 4
-  }
+  },
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/tui/.venv/lib/python3.10/site-packages"
+  ]
 }
