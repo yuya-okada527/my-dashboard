@@ -1,7 +1,7 @@
-import dataclasses
+from dataclasses import dataclass
 
 from textual.app import App, ComposeResult, RenderResult
-from textual.widgets import Static
+from textual.widgets import Static, Header, Footer
 
 
 COMMANDS = [
@@ -12,7 +12,7 @@ COMMANDS = [
 ]
 
 
-@dataclasses.dataclass
+@dataclass
 class Command:
     name: str
     description: str
@@ -31,9 +31,11 @@ class CommandWidget(Static):
 class Dashboard(App):
 
     def compose(self) -> ComposeResult:
+        yield Header()
         yield Static("Warp Cheat Sheet")
         for name, description in COMMANDS:
             yield CommandWidget(name=name, description=description)
+        yield Footer()
 
 
 if __name__ == "__main__":
