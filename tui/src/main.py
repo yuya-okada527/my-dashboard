@@ -1,31 +1,16 @@
-from dataclasses import dataclass
+import csv
+import io
 
-from textual.app import App, ComposeResult, RenderResult
-from textual.widgets import Static, Header, Footer
+from textual.app import App, ComposeResult
+from textual.widgets import DataTable, Static, Header, Footer
 
-
-COMMANDS = [
-    ("CMD-D", "タブを分割"),
-    ("CMD-W", "タブを閉じる"),
-    ("CMD-R", "コマンドを検索"),
-    ("CMD-P", "コマンドパレットを表示")
-]
-
-
-@dataclass
-class Command:
-    name: str
-    description: str
-
-
-class CommandWidget(Static):
-
-    def __init__(self, name: str, description: str) -> None:
-        super().__init__()
-        self.command = Command(name=name, description=description)
-
-    def render(self) -> RenderResult:
-        return f"{self.command.name}: {self.command.description}"
+CSV = """コマンド,説明
+CMD-D,タブを左に分割
+CMD-Shift-D,ダブを下に分割
+CMD-W,タブを閉じる
+CMD-R,コマンドを検索
+CMD-P,コマンドパレットを表示
+"""
 
 
 class Dashboard(App):
@@ -33,9 +18,14 @@ class Dashboard(App):
     def compose(self) -> ComposeResult:
         yield Header()
         yield Static("Warp Cheat Sheet")
-        for name, description in COMMANDS:
-            yield CommandWidget(name=name, description=description)
+        yield DataTable()
         yield Footer()
+
+    def on_mount(self) -> None:
+        table = self.query_one(DataTable)
+        rows = csv.reader(io.StringIO(CSV))
+        table.add_columns(*next(rows))
+        table.add_rows(rows)
 
 
 if __name__ == "__main__":
