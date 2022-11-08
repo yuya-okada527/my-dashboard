@@ -1,6 +1,7 @@
 start:
 	git checkout main
 	git pull
+	cd tui && make setup
 	cd tui && poetry run python src/main.py
 ca:
 	git add .
