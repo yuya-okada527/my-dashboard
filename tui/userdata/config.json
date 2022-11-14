@@ -1,0 +1,12 @@
+{
+  "screens": [
+    {
+      "name": "Warp Cheat Sheet",
+      "view-type": "table",
+      "data-source": {
+        "type": "file",
+        "path": "warp-command.csv"
+      }
+    }
+  ]
+}
