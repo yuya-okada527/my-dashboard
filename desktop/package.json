@@ -3,5 +3,8 @@
   "version": "0.0.1",
   "main": "main.js",
   "license": "MIT",
-  "author": "Yuya Okada"
+  "author": "Yuya Okada",
+  "devDependencies": {
+    "electron": "^21.2.3"
+  }
 }
