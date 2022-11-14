@@ -4,6 +4,9 @@
   "main": "main.js",
   "license": "MIT",
   "author": "Yuya Okada",
+  "scripts": {
+    "start": "electron ."
+  },
   "devDependencies": {
     "electron": "^21.2.3"
   }
