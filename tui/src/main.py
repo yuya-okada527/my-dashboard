@@ -1,17 +1,15 @@
 import csv
 import io
+import os
+from pathlib import Path
 
 from textual.app import App, ComposeResult
 from textual.widgets import DataTable, Static, Header, Footer
 
-CSV = """コマンド,説明
-CMD-D,タブを左に分割
-CMD-Shift-D,ダブを下に分割
-CMD-W,タブを閉じる
-CMD-R,コマンドを検索
-CMD-P,コマンドパレットを表示
-"""
-
+USERDATA_DIR = os.path.join(
+    Path(__file__).resolve().parents[1],
+    "userdata"
+)
 
 class Dashboard(App):
 
@@ -23,9 +21,10 @@ class Dashboard(App):
 
     def on_mount(self) -> None:
         table = self.query_one(DataTable)
-        rows = csv.reader(io.StringIO(CSV))
-        table.add_columns(*next(rows))
-        table.add_rows(rows)
+        with open(os.path.join(USERDATA_DIR, "warp-command.csv"), encoding="utf8") as f:
+            rows = csv.reader(io.StringIO(f.read()))
+            table.add_columns(*next(rows))
+            table.add_rows(rows)
 
 
 if __name__ == "__main__":
